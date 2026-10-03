@@ -50,8 +50,8 @@ URIs: https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-deb
 Suites: ./
 Signed-By: /etc/apt/keyrings/collaboraonline-release-keyring.gpg
 EOF
-apt_update_safe
-$STD apt install -y coolwsd code-brand
+$STD apt-get update
+$STD apt-get install -y coolwsd code-brand
 systemctl stop coolwsd
 mkdir -p /etc/systemd/system/coolwsd.service.d
 cat <<EOF >/etc/systemd/system/coolwsd.service.d/override.conf
@@ -64,7 +64,7 @@ $STD sudo -u cool coolconfig set-admin-password --user=admin --password="$COOLPA
 echo "$COOLPASS" >~/.coolpass
 msg_ok "Installed Collabora Online"
 
-fetch_and_deploy_gh_release "OpenCloud" "opencloud-eu/opencloud" "singlefile" "v7.4.0" "/usr/bin" "opencloud-*-linux-$(arch_resolve)"
+fetch_and_deploy_gh_release "OpenCloud" "opencloud-eu/opencloud" "singlefile" "v6.2.0" "/usr/bin" "opencloud-*-linux-amd64"
 mv /usr/bin/OpenCloud /usr/bin/opencloud
 
 msg_info "Configuring OpenCloud"
